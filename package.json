@@ -1,6 +1,6 @@
 { "name": "gulp-babel-external-helpers"
 , "description": "Gulp plugin to add external helpers for Babel in a separate file."
-, "version": "0.0.0"
+, "version": "1.0.0"
 , "license": "MIT"
 , "keywords": [ "gulpplugin", "babel" ]
 , "repository": "goto-bus-stop/gulp-babel-external-helpers"
