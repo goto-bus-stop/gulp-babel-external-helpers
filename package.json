@@ -12,7 +12,8 @@
 , "devDependencies":
   { "gulp-babel": "^5.2.0"
   , "vinyl": "^0.5.1"
-  , "mocha": "*" }
+  , "mocha": "*"
+  , "standard": "*" }
 , "scripts":
-  { "test": "mocha" }
+  { "test": "standard && mocha" }
 }

@@ -1,3 +1,4 @@
+/* global it */
 'use strict'
 
 var babel = require('gulp-babel')
@@ -17,8 +18,7 @@ it('should output used helpers to a separate file', function (cb) {
     seen++
     if (file.basename === 'fixture.js') {
       assert.deepEqual(file.babel.usedHelpers, [ 'class-call-check' ])
-    }
-    else {
+    } else {
       var contents = file.contents.toString('utf8')
       assert.ok(contents.indexOf('babelHelpers.classCallCheck') !== -1
                , 'does not include used helpers')
