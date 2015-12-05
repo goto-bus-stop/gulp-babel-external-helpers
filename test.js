@@ -9,7 +9,7 @@ var assert = require('assert')
 
 // largely stolen from https://github.com/babel/gulp-babel/blob/260a6c3/test.js
 it('should output used helpers to a separate file', function (cb) {
-  var stream = babel()
+  var stream = babel({ plugins: [ 'transform-es2015-classes' ] })
   var out = stream.pipe(babelHelpers())
 
   var seen = 0
@@ -17,7 +17,7 @@ it('should output used helpers to a separate file', function (cb) {
   out.on('data', function (file) {
     seen++
     if (file.basename === 'fixture.js') {
-      assert.deepEqual(file.babel.usedHelpers, [ 'class-call-check' ])
+      assert.deepEqual(file.babel.usedHelpers, [ 'classCallCheck' ])
     } else {
       var contents = file.contents.toString('utf8')
       assert.ok(contents.indexOf('babelHelpers.classCallCheck') !== -1
