@@ -2,6 +2,8 @@
 
 var babel = require('babel-core')
 var joinPath = require('path').join
+var relative = require('path').relative
+var dirname = require('path').dirname
 var through = require('through2')
 var Buffer = require('buffer').Buffer
 
@@ -20,7 +22,15 @@ function babelHelpers (fileName, outputType) {
           helpers.push(name)
         }
       })
-      lastFile = file
+
+      // if the output type is umd, then we inject the `require` statement;
+      if (outputType === 'umd' && file.babel.usedHelpers.length) {
+        var prefix = relative(dirname(file.path), file.base) || '.'
+        var externalHelpersPath = prefix + '/' + fileName
+        var statement = 'var babelHelpers = requrie("' + externalHelpersPath + '");\n'
+        file.contents = Buffer.concat([Buffer(statement), file.contents]);
+      }
+
     }
     this.push(file)
     cb()
