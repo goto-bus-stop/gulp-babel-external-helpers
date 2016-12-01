@@ -19,9 +19,9 @@
   "devDependencies": {
     "babel-plugin-transform-es2015-classes": "6.x",
     "gulp-babel": "6.x",
-    "mocha": "^2.4.5",
-    "standard": "^6.0.8",
-    "vinyl": "^0.5.1"
+    "mocha": "^3.2.0",
+    "standard": "^8.6.0",
+    "vinyl": "^2.0.1"
   },
   "scripts": {
     "test": "standard && mocha"
