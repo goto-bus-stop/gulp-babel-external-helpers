@@ -3,7 +3,7 @@
 var babel = require('babel-core')
 var joinPath = require('path').join
 var through = require('through2')
-var Buffer = require('buffer').Buffer
+var Buffer = require('safe-buffer').Buffer
 
 module.exports = babelHelpers
 
@@ -30,7 +30,7 @@ function babelHelpers (fileName, outputType) {
     if (lastFile) {
       var out = lastFile.clone({ contents: false })
       out.path = joinPath(lastFile.base, fileName)
-      out.contents = Buffer(babel.buildExternalHelpers(helpers, outputType))
+      out.contents = Buffer.from(babel.buildExternalHelpers(helpers, outputType), 'utf8')
       this.push(out)
     }
     cb()

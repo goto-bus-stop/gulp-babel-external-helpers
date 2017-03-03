@@ -1,6 +1,7 @@
 /* global it */
 'use strict'
 
+var Buffer = require('safe-buffer').Buffer
 var babel = require('gulp-babel')
 var babelHelpers = require('./')
 var File = require('vinyl')
@@ -36,7 +37,7 @@ it('should output used helpers to a separate file', function (cb) {
     cwd: __dirname,
     base: joinPath(__dirname, 'fixture'),
     path: joinPath(__dirname, 'fixture/fixture.js'),
-    contents: new Buffer('class MyClass {};')
+    contents: Buffer.from('class MyClass {};', 'utf8')
   }))
 
   stream.end()
